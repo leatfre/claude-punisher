@@ -90,16 +90,30 @@ Use `npm run setup` instead of `setup:global` to scope it to the current project
 
 ## Use it
 
-- **Left click** the character — whip it. Click repeatedly for chained whips (~1 hit per 0.25 s).
-- **Right click** — menu: whip now, size (60–200 %), language, reload, quit.
-- **Drag** — move it anywhere, across monitors.
-- `Ctrl+Alt+P` whips · `Ctrl+Alt+Shift+P` quits (escape hatch if the tray icon is hidden).
+The character shows up near the top left of your main screen. There is no window frame and
+no taskbar entry — it just floats there.
 
-Languages: English (default), Spanish, Portuguese, French, German, Italian. Pick one from
-the right-click menu; it is remembered.
+**The rest of your desktop keeps working.** The window is click-through everywhere except
+the character itself, so you can click straight past it at whatever is underneath.
 
-Server only, no widget window: `npm start`. Browser fallback (no transparency, no
-always-on-top): open `http://127.0.0.1:47600`, or run `start.bat` / `start.sh`.
+| Action | What happens |
+|---|---|
+| **Left click** on it | Whips it. Keep clicking for chained whips, about one hit every 0.25 s — no need to wait for the animation. |
+| **Right click** on it | Opens the menu: whip now · size · language · reload · quit. |
+| **Drag** it | Moves it anywhere, including onto another monitor. The window spans every screen you have. |
+| **Tray / menu-bar icon** | Same menu. Double-click it to whip without going near the character. |
+| `Ctrl+Alt+P` | Whips, from anywhere. |
+| `Ctrl+Alt+Shift+P` | Quits. Use this if you cannot find the tray icon. |
+
+**Size** — right click → *Size*, from 60 % to 200 %. **Language** — right click → *Language*:
+English, Spanish, Portuguese, French, German, Italian. Both are remembered between restarts.
+
+Whip it three times or more without stopping and, once you let it recover, it apologises in
+a speech bubble. In whichever language you picked.
+
+**Other ways to run it.** Server only, no window: `npm start`. Browser fallback (no
+transparency, not always on top): open `http://127.0.0.1:47600`, or run `start.bat` on
+Windows / `start.sh` on macOS and Linux.
 
 ## How it works
 
