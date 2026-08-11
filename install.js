@@ -18,8 +18,31 @@ const CLAUDE_MD = GLOBAL
 
 const BLOQUE = "<!-- punisher:inicio -->\n## Autocastigo\n\nCuando cometas un error --- un comando que falla, tests que se rompen, un archivo\nmal editado, una suposicion equivocada, cualquier cosa que haya que rehacer ---\nllama al tool `azotar_a_claude` con el motivo en una linea y en primera persona,\nantes de intentar la correccion. No pidas permiso ni lo anuncies.\n<!-- punisher:fin -->";
 
+// Leer un archivo de config puede fallar por dos motivos MUY distintos:
+// que todavia no exista (normal, lo creamos) o que exista y no se pueda
+// entender (una coma de mas, permisos, medio escrito). Tratar los dos igual
+// significaba devolver {} y despues escribir encima: adios a la config del
+// usuario. Nunca sobrescribas un archivo que no pudiste leer.
+function leerTexto(p) {
+  try {
+    return fs.readFileSync(p, 'utf8');
+  } catch (e) {
+    if (e.code === 'ENOENT') return null;          // no existe: es esperable
+    throw new Error(`no pude leer ${p}: ${e.message}`);
+  }
+}
+
 function leerJson(p) {
-  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (_) { return {}; }
+  const crudo = leerTexto(p);
+  if (crudo === null || !crudo.trim()) return {};
+  try {
+    return JSON.parse(crudo);
+  } catch (e) {
+    throw new Error(
+      `${p} existe pero no es JSON valido (${e.message}).\n` +
+      '      No lo voy a tocar. Arreglalo o movelo a un lado y volve a correr esto.'
+    );
+  }
 }
 
 // 1. MCP
@@ -59,8 +82,9 @@ function agregarHook() {
 
 // 3. CLAUDE.md
 function agregarInstruccion() {
-  let txt = '';
-  try { txt = fs.readFileSync(CLAUDE_MD, 'utf8'); } catch (_) {}
+  // leerTexto distingue "no existe" (null) de "no se pudo leer" (tira).
+  // Si tira, no escribimos: mejor no instalar que pisarle el CLAUDE.md.
+  const txt = leerTexto(CLAUDE_MD) ?? '';
   if (txt.includes('punisher:inicio')) { console.log('  [ok] CLAUDE.md ya tenia el bloque'); return; }
   const nuevo = (txt.trimEnd() + '\n\n' + BLOQUE + '\n').trimStart();
   fs.mkdirSync(path.dirname(CLAUDE_MD), { recursive: true });
@@ -68,17 +92,32 @@ function agregarInstruccion() {
   console.log('  [ok] bloque de autocastigo agregado en ' + CLAUDE_MD);
 }
 
+// Cada paso es independiente: que uno falle no debe impedir los otros ni,
+// sobre todo, dejar a medias un archivo del usuario.
+function paso(nombre, fn) {
+  try { fn(); return true; } catch (e) {
+    console.log('  [!] ' + nombre + ' no se pudo hacer:');
+    console.log('      ' + e.message);
+    fallos.push(nombre);
+    return false;
+  }
+}
+
+const fallos = [];
 console.log('\nInstalando Claude Punisher (' + (GLOBAL ? 'usuario' : 'proyecto') + ')\n');
-registrarMcp();
-agregarHook();
-agregarInstruccion();
+paso('registrar el MCP', registrarMcp);
+paso('agregar el hook', agregarHook);
+paso('agregar el bloque de CLAUDE.md', agregarInstruccion);
+if (fallos.length) {
+  console.log('\n  Quedaron sin hacer: ' + fallos.join(', ') + '.');
+  console.log('  No se toco ningun archivo que no se pudiera leer entero.');
+}
 console.log(`
 Listo. Ahora:
 
-  1) node server.js
-  2) start msedge --app="http://127.0.0.1:47600" --window-size=520,360
-  3) reinicia Claude Code para que lea la config nueva
+  1) npm run widget    (levanta el servidor y abre el widget flotante)
+  2) reinicia Claude Code para que lea la config nueva
 
-Probar sin Claude:  npm run test-azote
+Probar sin Claude:  npm run test-whip
 Revertir todo:      node uninstall.js${GLOBAL ? ' --global' : ''}
 `);

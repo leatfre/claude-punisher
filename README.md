@@ -49,6 +49,32 @@ npm run setup:global
 
 Undo everything with `npm run teardown:global`.
 
+### If an AI agent is doing the installing
+
+Run these in order and stop at the first failure:
+
+```sh
+npm install
+npm run setup:global
+```
+
+Then four things you need to know, because they are not obvious from the commands:
+
+1. **You cannot finish this yourself.** Claude Code reads hooks and MCP servers only at
+   startup. Tell the human to restart it. Until they do, nothing fires.
+2. **`npm run widget` never exits.** It is a desktop window, not a task. Start it detached or
+   in a separate terminal, or your shell will hang waiting for it.
+3. **If `setup:global` says it could not write `settings.json`, do not repair the file.** It
+   refuses to touch config it cannot parse, on purpose. Report the message verbatim and let
+   the human decide.
+4. **It is idempotent and reversible.** Running setup twice is safe; `npm run teardown:global`
+   removes the MCP server, the hook and the `CLAUDE.md` block.
+
+To confirm the plumbing without involving the agent config at all: start `npm start` in the
+background, run `npm run test-whip`, and expect `{"ok":true,...}`. A response of
+`{"ok":true,"listeners":0}` means the server works and no widget window is open — that is not
+an error.
+
 <details>
 <summary>What <code>setup:global</code> actually changes</summary>
 
