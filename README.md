@@ -102,7 +102,6 @@ agent (Claude Code, Cursor, your own script)
 | `hooks/detect-fail.js` | `PostToolUse` hook. Reads exit codes and error patterns. |
 | `install.js` / `uninstall.js` | Wires up (or removes) the MCP server, the hook and the `CLAUDE.md` block. |
 
-Design notes, in Spanish: [`PROYECTO.md`](PROYECTO.md).
 
 ## Wire it to a different agent
 

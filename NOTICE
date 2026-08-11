@@ -21,9 +21,9 @@ No Anthropic logo, wordmark, or brand asset is included in this repository.
 The character artwork
 --------------------------------------------------------------------------------
 
-avatar.png was generated with Google Gemini from a prompt by the author, and was
-not copied from any existing work. avatar-body.svg is a vector tracing of it, made
-for this project; it is the version the widget actually renders.
+The character was generated with Google Gemini from a prompt by the author, and
+was not copied from any existing work. avatar-body.svg is a vector tracing of that
+output and is the single source for the artwork; icon.png is rendered from it.
 
 Note that in some jurisdictions -- the United States among them -- images produced
 by a generative model without meaningful human authorship may not attract copyright
