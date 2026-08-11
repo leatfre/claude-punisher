@@ -38,5 +38,13 @@ Electron (MIT) is used at runtime for the desktop window. It is installed from n
 and is not vendored in this repository. See node_modules/electron/LICENSE after
 installation.
 
-Instrument Sans (SIL Open Font License 1.1) is embedded in widget.html.
+Instrument Sans is embedded in widget.html as two woff2 subsets (about 40 KB).
+Copyright 2023 The Instrument Sans Project Authors. Licensed under the SIL Open
+Font License 1.1, whose full text travels with it in licenses/Instrument-Sans-OFL.txt
+as that licence requires.
 https://fonts.google.com/specimen/Instrument+Sans
+
+whip.mp3 came from a royalty-free sound library; the exact source was not recorded.
+It is used for the whip crack in app mode. Nothing depends on it: if the file is
+missing or fails to load, crack() falls back to a synthesised WebAudio crack, so it
+can be removed in one commit with no functional change.
