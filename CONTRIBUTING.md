@@ -69,10 +69,9 @@ There are two image files and they do different jobs:
   inside `widget.html` as a manifest asset, and *that* copy is what gets rendered. Editing
   the file on its own changes nothing — you have to re-embed it (see the section above about
   `widget.html` being a bundler artifact). The two must stay byte-identical.
-- **`icon.png`** is only the tray / menu-bar icon, loaded at runtime by `desktop.js`. It is
-  rendered from the same body path plus the eyes, so the icon and the on-screen character
-  are the same drawing. Electron cannot load an SVG here — `nativeImage` returns an empty
-  image — so a raster is required.
+- **`avatar.png`** is only the tray / menu-bar icon, loaded at runtime by `desktop.js`. It is
+  the original raster the vector was traced from, and it keeps the white sticker outline
+  because that reads better at 20 px against both light and dark taskbars.
 
 The SVG has no eyes on purpose: `widget.html` draws them as separate elements on top so they
 can blink and turn into X's. Their coordinates are in a comment inside the SVG.

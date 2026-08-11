@@ -270,7 +270,7 @@ function crearVentana() {
 function crearBandeja() {
   // En algunos escritorios de Linux no hay bandeja: no es motivo para no arrancar.
   try {
-    let icono = nativeImage.createFromPath(path.join(__dirname, 'icon.png'));
+    let icono = nativeImage.createFromPath(path.join(__dirname, 'avatar.png'));
     if (!icono.isEmpty()) icono = icono.resize({ width: MAC ? 16 : 20, height: MAC ? 16 : 20 });
     tray = new Tray(icono);
     tray.setToolTip('Claude Punisher');
