@@ -1,0 +1,18 @@
+# Normalise line endings so the repo behaves the same on Windows, macOS and Linux.
+# Without this, a clone on Windows with core.autocrlf=true can hand you a start.sh
+# full of CRLF, and Unix answers with "bad interpreter: /usr/bin/env sh^M".
+* text=auto eol=lf
+
+# Shell scripts must be LF no matter what. Batch files must be CRLF.
+*.sh   text eol=lf
+*.bat  text eol=crlf
+
+# Never touch these.
+*.png  binary
+*.mp3  binary
+*.ico  binary
+*.woff2 binary
+
+# widget.html is a bundler artifact: a single 190 KB line holding JSON-escaped
+# HTML plus base64 assets. Let Git treat it as text but never diff it inline.
+widget.html -diff

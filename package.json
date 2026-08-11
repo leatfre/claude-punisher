@@ -1,0 +1,39 @@
+{
+  "name": "claude-punisher",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Desktop widget that whips a little character whenever your local AI coding agent messes up. MCP tool + PostToolUse hook + plain HTTP endpoint.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude-code",
+    "mcp",
+    "desktop-widget",
+    "electron",
+    "ai-agent"
+  ],
+  "scripts": {
+    "widget": "electron desktop.js",
+    "start": "node server.js",
+    "setup": "node install.js",
+    "setup:global": "node install.js --global",
+    "teardown": "node uninstall.js",
+    "teardown:global": "node uninstall.js --global",
+    "test-whip": "node -e \"fetch('http://127.0.0.1:'+(process.env.PUNISHER_PORT||47600)+'/azotar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({motivo:'manual test',severidad:2})}).then(r=>r.text()).then(console.log).catch(e=>console.log('server not running:',e.message))\""
+  },
+  "devDependencies": {
+    "electron": "^43.4.0"
+  },
+  "author": "leatfre",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leatfre/claude-punisher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leatfre/claude-punisher/issues"
+  },
+  "homepage": "https://github.com/leatfre/claude-punisher#readme"
+}

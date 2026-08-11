@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 487" width="600" height="487" role="img" aria-label="Claude Punisher (cuerpo)">
+  <title>Claude Punisher (cuerpo, sin ojos ni borde)</title>
+  <!-- Variante para el widget de escritorio:
+       - SIN los ojos: los dibuja widget.html por encima, para poder animarlos.
+         En avatar.svg estan en x 133.56 y 419.77, y 141.15, de 47.7x51.66.
+       - SIN el borde blanco de sticker: sobre el escritorio queda mejor la
+         silueta limpia. La version fiel al PNG original es avatar.svg. -->
+  <defs>
+    <filter id="cp-shadow" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <path id="cp-body" fill="#D97757" filter="url(#cp-shadow)"
+        d="M85.85 37.82H515.18V141.15H562.88V244.48H515.18V451.13H467.48V347.81H419.77V451.13H372.07V347.81H228.96V451.13H181.26V347.81H133.56V451.13H85.85V244.48H38.15V141.15H85.85Z"/>
+</svg>
