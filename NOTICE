@@ -22,8 +22,8 @@ The character artwork
 --------------------------------------------------------------------------------
 
 avatar.png was generated with Google Gemini from a prompt by the author, and was
-not copied from any existing work. avatar.svg and avatar-body.svg are vectorised
-versions of it, traced from the pixel data.
+not copied from any existing work. avatar-body.svg is a vector tracing of it, made
+for this project; it is the version the widget actually renders.
 
 Note that in some jurisdictions -- the United States among them -- images produced
 by a generative model without meaningful human authorship may not attract copyright

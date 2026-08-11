@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 487" width="600" height="487" role="img" aria-label="Claude Punisher (cuerpo)">
-  <title>Claude Punisher (cuerpo, sin ojos ni borde)</title>
-  <!-- Variante para el widget de escritorio:
-       - SIN los ojos: los dibuja widget.html por encima, para poder animarlos.
-         En avatar.svg estan en x 133.56 y 419.77, y 141.15, de 47.7x51.66.
-       - SIN el borde blanco de sticker: sobre el escritorio queda mejor la
-         silueta limpia. La version fiel al PNG original es avatar.svg. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 487" width="600" height="487" role="img" aria-label="Claude Punisher">
+  <title>Claude Punisher</title>
+  <!-- This is the character, and the source of truth for it.
+
+       A gzipped copy of this exact file is embedded inside widget.html as a
+       manifest asset, and that embedded copy is what the widget renders at
+       runtime. Editing this file alone changes nothing: you must re-embed it.
+       See CONTRIBUTING.md.
+
+       It has no eyes on purpose. widget.html draws them as separate elements
+       on top so they can blink and turn into X's when the whip lands. They sit
+       at x 133.56 and 419.77, y 141.15, each 47.7 x 51.66 in these viewBox
+       units. Move the body and you must move those too. -->
   <defs>
     <filter id="cp-shadow" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
       <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>

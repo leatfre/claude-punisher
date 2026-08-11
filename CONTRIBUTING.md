@@ -60,3 +60,18 @@ re-serialise with:
 Language strings live in the `IDIOMAS` table at the top of `desktop.js`. Each entry needs the
 whipping sound, the apology line, and the menu labels. Keep the apology short — it has to fit
 in a speech bubble.
+
+### The character
+
+There are two image files and they do different jobs:
+
+- **`avatar-body.svg`** is the character. A gzipped copy of this exact file is embedded
+  inside `widget.html` as a manifest asset, and *that* copy is what gets rendered. Editing
+  the file on its own changes nothing — you have to re-embed it (see the section above about
+  `widget.html` being a bundler artifact). The two must stay byte-identical.
+- **`avatar.png`** is only the tray / menu-bar icon, loaded at runtime by `desktop.js`. It is
+  the original raster the vector was traced from, and it keeps the white sticker outline
+  because that reads better at 20 px against both light and dark taskbars.
+
+The SVG has no eyes on purpose: `widget.html` draws them as separate elements on top so they
+can blink and turn into X's. Their coordinates are in a comment inside the SVG.
