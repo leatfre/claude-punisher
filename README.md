@@ -5,11 +5,12 @@ A desktop widget that gets whipped every time your AI coding agent messes up.
 It does not fix anything, block anything, or interfere with the agent. It turns a silent
 terminal error into something you can see on your desktop.
 
-![The widget taking a hit](docs/demo.png)
+![Three whips in a row, after which the character apologises](docs/whip.gif)
 
-The character floats on top of everything, with real per-pixel transparency. The rest of
-your desktop stays clickable — the window only captures the mouse when the cursor is
-actually over the character.
+The dark background there is a stand-in for your desktop. The widget has none: the character
+floats on top of everything with real per-pixel transparency, and the rest of your desktop
+stays clickable — the window only captures the mouse when the cursor is actually over the
+character.
 
 ---
 
