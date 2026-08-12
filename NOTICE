@@ -25,6 +25,10 @@ avatar.png was generated with Google Gemini from a prompt by the author, and was
 not copied from any existing work. avatar-body.svg is a vector tracing of it, made
 for this project; it is the version the widget actually renders.
 
+avatar.ico is the same image rescaled for Windows, used as the icon of the desktop
+shortcut that shortcut.js creates. It is derived from avatar.png and carries no separate
+rights.
+
 Note that in some jurisdictions -- the United States among them -- images produced
 by a generative model without meaningful human authorship may not attract copyright
 protection at all. Treat the artwork as freely reusable and do not rely on it as a

@@ -41,6 +41,33 @@ npm run widget
 
 That starts the local server (if it is not already up) and opens the floating character.
 
+### A shortcut instead of a terminal
+
+`npm run widget` never exits, so it ties the widget to a terminal you have to keep open.
+This gives you something to double-click instead:
+
+```sh
+npm run shortcut
+```
+
+| Platform | What lands where |
+|---|---|
+| **Windows** | `Claude Punisher.lnk` on the desktop, with the character as its icon. |
+| **macOS** | `Claude Punisher.app` on the desktop — a minimal unsigned bundle, no icon yet. |
+| **Linux** | A `.desktop` entry on the desktop *and* in the applications menu. |
+
+It points straight at the Electron binary rather than at `npm`, so **no console window
+opens next to the widget**, and Node does not even have to be on your `PATH` — the widget
+starts the server itself.
+
+- `npm run shortcut:startup` — the same, plus launching at login.
+- `npm run shortcut:remove` — deletes everything it created.
+- `node shortcut.js --name "Punisher dev"` — a second launcher for a second clone, so the
+  two do not overwrite each other. Pass the same `--name` to `--remove`.
+
+It asks the system where your desktop actually is, so a folder redirected to OneDrive or
+named in your own language still works.
+
 Wire it to Claude Code, then **restart Claude Code** so it picks up the new config:
 
 ```sh
@@ -141,6 +168,7 @@ agent (Claude Code, Cursor, your own script)
 | `mcp.js` | MCP server over stdio. Exposes the `azotar_a_claude` tool. |
 | `hooks/detect-fail.js` | `PostToolUse` hook. Reads exit codes and error patterns. |
 | `install.js` / `uninstall.js` | Wires up (or removes) the MCP server, the hook and the `CLAUDE.md` block. |
+| `shortcut.js` | Creates or removes the desktop launcher (and the optional login-item one). |
 
 
 ## Wire it to a different agent

@@ -18,6 +18,9 @@
   "scripts": {
     "widget": "electron desktop.js",
     "start": "node server.js",
+    "shortcut": "node shortcut.js",
+    "shortcut:startup": "node shortcut.js --startup",
+    "shortcut:remove": "node shortcut.js --remove",
     "setup": "node install.js",
     "setup:global": "node install.js --global",
     "teardown": "node uninstall.js",

@@ -118,6 +118,8 @@ Listo. Ahora:
   1) npm run widget    (levanta el servidor y abre el widget flotante)
   2) reinicia Claude Code para que lea la config nueva
 
+Para no volver a la consola:  npm run shortcut   (acceso directo en el escritorio)
+
 Probar sin Claude:  npm run test-whip
 Revertir todo:      node uninstall.js${GLOBAL ? ' --global' : ''}
 `);
